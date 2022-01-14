@@ -3,7 +3,7 @@ const uuid = require("uuid");
 const router = express.Router();
 const todos = require("../../todos");
 
-const idFilter = (req) => (todo) => todo.id === parseInt(req.params.id);
+const idFilter = (req) => (todo) => todo.id === req.params.id;
 
 // Gets All Todos
 router.get("/", (req, res) => res.json(todos));
