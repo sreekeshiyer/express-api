@@ -1,12 +1,8 @@
 const express = require("express");
-const path = require("path");
 const { engine } = require("express-handlebars");
 const todos = require("./todos");
 
 const app = express();
-
-// Init middleware
-// app.use(logger);
 
 // Handlebars Middleware
 app.engine("handlebars", engine());
@@ -23,11 +19,7 @@ app.get("/", (req, res) =>
         todos,
     })
 );
-
-// Set static folder
-app.use(express.static(path.join(__dirname, "public")));
-
-// Members API Routes
+// Todos API Routes
 app.use("/api/todos", require("./routes/api/todos"));
 
 const PORT = process.env.PORT || 5000;
