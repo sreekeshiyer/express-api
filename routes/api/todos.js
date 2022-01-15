@@ -42,11 +42,11 @@ router.put("/:id", (req, res) => {
     const found = todos.some(idFilter(req));
 
     if (found) {
-        todos.forEach((member, i) => {
-            if (idFilter(req)(member)) {
-                const updMember = { ...member, ...req.body };
-                todos[i] = updMember;
-                res.json({ msg: "Task updated", updMember });
+        todos.forEach((task, i) => {
+            if (idFilter(req)(task)) {
+                const updTask = { ...task, ...req.body };
+                todos[i] = updTask;
+                res.json({ msg: "Task updated", updTask });
             }
         });
     } else {
@@ -63,7 +63,7 @@ router.delete("/:id", (req, res) => {
     if (found) {
         res.json({
             msg: "Task deleted",
-            todos: todos.filter((member) => !idFilter(req)(member)),
+            todos: todos.filter((task) => !idFilter(req)(task)),
         });
     } else {
         res.status(400).json({
